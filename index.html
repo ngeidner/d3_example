@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://nickgeidner.com/494/examples/d3_ex3.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>494 example 2</title>
+		<script type="text/javascript" src="./d3_files/d3.v2.js"></script>
+		<style type="text/css">
+		
+			div.bar {
+				display: inline-block;
+				width: 20px;
+				height: 75px;	/* Gets overriden by D3-assigned height below */
+				margin-right: 2px;
+				background-color: teal;
+			}
+		
+		</style>
+	</head>
+	<body>
+		<p id="wins">Wins per year</p>
+		<p id="conf">Conference</p>
+	
+		<script type="text/javascript">
+
+			var dataset = [ 12, 15, 20, 24, 25, 18, 27, 29 ];
+			
+			d3.select("body").selectAll("div")
+				.data(dataset)
+				.enter()
+				.append("div")
+				.attr("class", "bar")
+				.style("height", function(d) {
+					var barHeight = d * 5;
+					return barHeight + "px";
+				});
+			
+			d3.selectAll("p")
+				.on("click", function() {
+
+					//See which p was clicked
+					var paragraphID = d3.select(this).attr("id");
+					
+					//Decide what to do next
+					if (paragraphID == "wins") {
+						//New values for dataset
+						dataset = [ 12, 15, 20, 24, 25, 18, 27, 29 ];
+
+						//Update all bars
+						d3.selectAll("div")
+					   		.data(dataset)
+					   		.style("height", function(d) {
+								var barHeight = d * 5;
+								return barHeight + "px";
+						});
+					} else {
+						//New values for dataset
+						dataset = [ 7, 3, 4, 2, 2, 3, 2, 1 ];
+
+						//Update all bars
+						d3.selectAll("div")
+					   		.data(dataset)
+					   		.style("height", function(d) {
+								var barHeight = d * 5;
+								return barHeight + "px";
+						});
+					}
+				});	
+				
+		</script><div class="bar" style="height: 60px;"></div><div class="bar" style="height: 75px;"></div><div class="bar" style="height: 100px;"></div><div class="bar" style="height: 120px;"></div><div class="bar" style="height: 125px;"></div><div class="bar" style="height: 90px;"></div><div class="bar" style="height: 135px;"></div><div class="bar" style="height: 145px;"></div>
+	
+</body></html>
